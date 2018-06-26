@@ -23,3 +23,6 @@ module MoneySuperMarket
     config.autoload_paths += %W[#{config.root}/app/services]
   end
 end
+
+# silance deprecation warning
+Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
