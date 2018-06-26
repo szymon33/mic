@@ -14,4 +14,6 @@ class ContactForm
   attr_accessor(*ATTRIBUTES)
 
   validates :name, :business_name, :telephone_number, :email, presence: true
+
+  alias save valid?
 end

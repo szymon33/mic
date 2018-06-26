@@ -8,4 +8,18 @@ describe ContactForm do
   it { is_expected.to respond_to(:contact_time) }
   it { is_expected.to respond_to(:notes) }
   it { is_expected.to respond_to(:reference) }
+
+
+  let(:contact) { build(:contact_form) }
+
+  describe '.save' do
+    it 'is truthy' do
+      expect(contact.save).to be_truthy
+    end
+
+    it 'is falsey' do
+      contact = build(:contact_form, name: nil)
+      expect(contact.save).to be_falsey
+    end
+  end
 end
