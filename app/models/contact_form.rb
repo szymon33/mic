@@ -12,8 +12,17 @@ class ContactForm
   ].freeze
 
   attr_accessor(*ATTRIBUTES)
+  attr_reader :message
 
   validates :name, :business_name, :telephone_number, :email, presence: true
 
-  alias save valid?
+  def save
+    if valid?
+      @message = 'Enqueue success'
+      true
+    else
+      @message = 'Format errors on validation'
+      false
+    end
+  end
 end
