@@ -5,12 +5,16 @@ module API
     class ContactFormsController < API::V1::BaseController
       def create
         contact_form = ContactForm.new(contact_params)
-
         if contact_form.save
-          render json: { contact_form: contact_form }, status: :created
+          render json: {
+            message: contact_form.message,
+            errors: []
+          }, status: :created
         else
-          render json: { errors: contact_form.errors.full_messages },
-                         status: :unprocessable_entity
+          render json: {
+            message: contact_form.message,
+            errors: contact_form.errors.full_messages
+          }, status: :unprocessable_entity
         end
       end
 
