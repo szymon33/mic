@@ -158,6 +158,7 @@ GEM
     puma (3.11.4)
     puma (3.11.4-java)
     rack (2.0.5)
+    rack-cors (0.4.0)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)
@@ -318,6 +319,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails (~> 0.3)
   puma (~> 3.7)
+  rack-cors
   rails (~> 5.1)
   rails-controller-testing
   rspec-rails (~> 3.7)
