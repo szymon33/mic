@@ -36,7 +36,7 @@ gulp.task("html", function() {
 });
 
 gulp.task('lint', function() {
-    return gulp.src(['./src/**/*.js'])
+    return gulp.src(['./src/**/*.js', '!./src/js/vendors/**/*.*'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
