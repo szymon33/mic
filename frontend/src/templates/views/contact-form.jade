@@ -1,14 +1,18 @@
 div
-  .alert.alert-danger(role="alert", ng-show="error")
-    i.fa.fa-exclamation-triangle &nbsp;
-    | {{ message }}
-    | {{ error }}
-
   form(name="contactForm",
        ng-submit="submit(contactForm.$valid)",
        role="form",
        novalidate="true")
     legend(class="title") Fill in the form for a quick call
+
+    .alert.alert-warning(ng-show="message", role="alert")
+      | {{ message }}
+
+    ul.list-unstyled.error-messages(ng-show="errors.length>0")
+      li(ng-repeat="message in errors")
+        .alert.alert-danger(ng-show="message", role="alert")
+          | {{ message }}
+
     .row
       fieldset
         .col-md-12

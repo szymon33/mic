@@ -3,16 +3,27 @@
 
   angular
     .module('micApp')
-    .controller('ContactFromCtrl', ['$scope', ContactFromCtrl]);
+    .controller('ContactFromCtrl', ContactFromCtrl);
 
-  function ContactFromCtrl($scope) {
+  ContactFromCtrl.$inject = ['$scope', '$http', 'ContactFormsResource'];
+
+  function ContactFromCtrl($scope, $http, ContactFormsResource) {
     $scope.newContact = {};
     $scope.message = '';
-    $scope.error = '';
+    $scope.errors = [];
 
     $scope.submit = function(isValid) {
       if (isValid) {
-        console.log('here');
+        ContactFormsResource.save({ contact_form: $scope.newContact }, function(resp, headers) {
+          $scope.message = resp.message;
+          $scope.errors = [];
+        }, function(reason) {
+          var data = reason.data;
+          if (angular.isDefined(data)) {
+            $scope.message = data.message;
+            $scope.errors = data.errors;
+          }
+        });
       }
     };
   }
