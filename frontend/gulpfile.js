@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const concat = require("gulp-concat");
 const browserSync = require("browser-sync").create();
 const jshint = require('gulp-jshint');
+const jade = require('gulp-jade');
 
 const scripts = require("./scripts");
 const styles = require("./styles");
@@ -40,8 +41,16 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
+gulp.task('jade', function() {
+   gulp.src("./src/templates/**/*.jade")
+    .pipe(jade({
+      pretty: true
+    }))
+    .pipe(gulp.dest('./dist/'))
+});
+
 gulp.task("build", function() {
-    gulp.start(["css", "lint", "js", "html"]);
+    gulp.start(["jade", "css", "lint", "js", "html"]);
 });
 
 gulp.task("browser-sync", function() {
@@ -59,4 +68,5 @@ gulp.task("start", function() {
     gulp.watch(["./src/css/**/*.css"], ["css"]);
     gulp.watch(["./src/js/**/*.js"], ["lint", "js"]);
     gulp.watch(["./src/templates/**/*.html"], ["html"]);
+    gulp.watch(["./src/templates/**/*.jade"], ["jade"]);
 });
