@@ -6,6 +6,14 @@
     .controller('ContactFromCtrl', ['$scope', ContactFromCtrl]);
 
   function ContactFromCtrl($scope) {
-    $scope.message = "Hello here!";
+    $scope.newContact = {};
+    $scope.message = '';
+    $scope.error = '';
+
+    $scope.submit = function(isValid) {
+      if (isValid) {
+        console.log('here');
+      }
+    };
   }
 }());
