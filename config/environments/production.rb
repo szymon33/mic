@@ -28,5 +28,6 @@ Rails.application.configure do
   config.lead_api_access_token = ENV['LEAD_API_ACCESS_TOKEN']
   config.lead_api_base_uri = ENV['LEAD_API_URI']
 
-  config.action_controller.asset_host = "moneysupermarket.makeitcheaper.com"
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server
+  # config.action_controller.asset_host = "http://assets.example.com"
 end
