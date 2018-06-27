@@ -16,8 +16,13 @@ class SwaggerClient
   end
 
   def create(body)
-    response = self.class.post('/create',
-                               body: @options[:credentials].merge(body))
+    begin
+      response = self.class.post('/create',
+                                 body: @options[:credentials].merge(body))
+    rescue
+      # notify error catcher like NewRelic or Honeybadger
+      return
+    end
     response&.parsed_response
   end
 end
