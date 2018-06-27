@@ -2,7 +2,8 @@
   'use strict';
 
   angular.module('micApp', [
-      'ngRoute'
+      'ngRoute',
+      'ngResource'
   ])
   .config([
       '$routeProvider',
@@ -13,5 +14,8 @@
                   controller: 'ContactFromCtrl'
               });
       }
-  ]);
+  ])
+  .constant("ENV", {
+    "ApiEndpoint": "http://api.example.com:3000/api/v1"
+  });
 }());
