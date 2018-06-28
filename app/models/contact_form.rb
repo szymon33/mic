@@ -31,7 +31,7 @@ class ContactForm
 
   def swagger_api_validator_and_storage
     result = SwaggerClient.new.create(as_json)
-    if result
+    if result && result['errors']
       result['errors'].each { |msg| errors[:base] << msg }
       @message = result['message']
     else
