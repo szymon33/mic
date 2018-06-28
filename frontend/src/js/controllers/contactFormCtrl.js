@@ -11,13 +11,17 @@
     $scope.newContact = {};
     $scope.message = '';
     $scope.errors = [];
+    $scope.resetForm = null;
 
     $scope.submit = function(isValid) {
+      var name = $scope.newContact.name;
+
       if (isValid) {
         ContactFormsResource.save({ contact_form: $scope.newContact }, function(resp, headers) {
           $scope.message = '';
           $scope.errors = [];
-          popupMsg();
+          $scope.resetForm($scope.contactForm);
+          popupMsg(name);
         }, function(reason) {
           var data = reason.data;
           if (angular.isDefined(data)) {
@@ -28,9 +32,14 @@
       }
     };
 
-    function popupMsg() {
+    $scope.resetForm = function(form) {
+      $scope.newContact = {};
+      $scope.contactForm.$setPristine();
+    };
+
+    function popupMsg(name) {
       var msg = '<h4>Hello ' + 
-        $scope.newContact.name + 
+        name + 
         ',</h4>We received you contact request. We wil get back to you as soon as possible. Thank you!';
       vex.defaultOptions.className = 'vex-theme-wireframe';
       vex.dialog.alert({ unsafeMessage: msg });
