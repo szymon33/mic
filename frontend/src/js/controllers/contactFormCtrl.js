@@ -5,23 +5,16 @@
     .module('micApp')
     .controller('ContactFromCtrl', ContactFromCtrl);
 
-  ContactFromCtrl.$inject = ['$scope', '$http', 'ContactFormsResource', '$window', '$sce'];
+  ContactFromCtrl.$inject = ['$scope', '$http', 'ContactFormsResource'];
 
-  function ContactFromCtrl($scope, $http, ContactFormsResource, $window, $sce) {
-    $scope.newContact = {};
-    $scope.message = '';
-    $scope.errors = [];
-    $scope.resetForm = null;
-
+  function ContactFromCtrl($scope, $http, ContactFormsResource) {
+    init($scope);
     $scope.submit = function(isValid) {
-      var name = $scope.newContact.name;
-
+      var storedName = $scope.newContact.name;
       if (isValid) {
         ContactFormsResource.save({ contact_form: $scope.newContact }, function(resp, headers) {
-          $scope.message = '';
-          $scope.errors = [];
-          $scope.resetForm($scope.contactForm);
-          popupMsg(name);
+          resetForm($scope);
+          popupMsg(storedName);
         }, function(reason) {
           var data = reason.data;
           if (angular.isDefined(data)) {
@@ -31,18 +24,24 @@
         });
       }
     };
+  }
 
-    $scope.resetForm = function(form) {
-      $scope.newContact = {};
-      $scope.contactForm.$setPristine();
-    };
+  function init(scope) {
+    scope.newContact = {};
+    scope.message = '';
+    scope.errors = [];
+  }
 
-    function popupMsg(name) {
-      var msg = '<h4>Hello ' + 
-        name + 
-        ',</h4>We received you contact request. We wil get back to you as soon as possible. Thank you!';
-      vex.defaultOptions.className = 'vex-theme-wireframe';
-      vex.dialog.alert({ unsafeMessage: msg });
-    }
+  function resetForm(scope) {
+    init(scope);
+    scope.contactForm.$setPristine();
+  }
+
+  function popupMsg(name) {
+    var msg = '<h4>Hello ' + 
+      name + 
+      ',</h4>We received you contact request. We wil get back to you as soon as possible. Thank you!';
+    vex.defaultOptions.className = 'vex-theme-wireframe';
+    vex.dialog.alert({ unsafeMessage: msg });
   }
 }());
