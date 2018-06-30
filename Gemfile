@@ -36,6 +36,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'codeclimate-test-reporter', group: :test, require: nil
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'factory_bot', '~> 4.8', '>= 4.8.2'
@@ -43,6 +44,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'
   gem 'shoulda-matchers'
+  gem 'simplecov'
   gem 'vcr', '~> 4.0'
   gem 'webmock', '~> 3.1'
 end

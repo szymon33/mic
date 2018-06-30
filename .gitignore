@@ -15,3 +15,4 @@ puma_staging.rb
 public/assets
 **/Thumbs.db
 /frontend/src/js/ngConstants.js
+coverage/
