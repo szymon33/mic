@@ -1,8 +1,15 @@
+//
+// You need to set up MIC_ENV first to make it work
+//
+
 const gulp = require("gulp");
 const concat = require("gulp-concat");
 const browserSync = require("browser-sync").create();
 const jshint = require('gulp-jshint');
 const jade = require('gulp-jade');
+const ngConstant = require('gulp-ng-constant');
+
+const config = require('./config');
 
 const scripts = require("./scripts");
 const styles = require("./styles");
@@ -49,8 +56,17 @@ gulp.task('jade', function() {
     .pipe(gulp.dest('./dist/'))
 });
 
+gulp.task('constants', function () {
+  var envConfig = config[process.env.MIC_ENV];
+  return ngConstant({
+      constants: envConfig,
+      stream: true
+    })
+    .pipe(gulp.dest('./src/js'));
+});
+
 gulp.task("build", function() {
-    gulp.start(["jade", "css", "lint", "js", "html"]);
+    gulp.start(["constants", "jade", "css", "lint", "js", "html"]);
 });
 
 gulp.task("browser-sync", function() {
