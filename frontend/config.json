@@ -1,0 +1,12 @@
+{
+  "development": {
+    "ENV": {
+      "ApiEndpoint": "http://localhost:3000/api/v1"
+    }
+  },
+  "production": {
+    "ENV": {
+      "ApiEndpoint": "https://api.production.com/"
+    }
+  }
+}
