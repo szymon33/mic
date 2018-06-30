@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+ - 2.3.2
+sudo: false
+install: bundle install
+script:
+- bundle exec rspec spec -f doc
+matrix:
+  fast_finish: true
+notifications:
+  email:
+    recipients:
+      - miedziejko@gmail.com
