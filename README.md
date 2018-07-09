@@ -1,7 +1,7 @@
-# Full stack web developer challenge
+# Full stack web developer challenge (Angular + RoR)
 [![Build Status](https://travis-ci.org/szymon33/mic.svg?branch=master)](https://travis-ci.org/szymon33/mic)
-[![Maintainability](https://api.codeclimate.com/v1/badges/48b56fc828cbb16190a4/maintainability)](https://codeclimate.com/github/szymon33/carwaw/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/48b56fc828cbb16190a4/test_coverage)](https://codeclimate.com/github/szymon33/carwaw/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9d0da0dfa7271c6a0775/maintainability)](https://codeclimate.com/github/szymon33/mic/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9d0da0dfa7271c6a0775/test_coverage)](https://codeclimate.com/github/szymon33/mic/test_coverage)
  
 ## 1. Introduction
 
@@ -21,10 +21,12 @@ Technology stack:
 - Bootstrap
 - NPM
 - gulp project
+- Karma with Jasmine
 - Rest architecture in both front-end and back-end
 - MVC
 - CI (Travis)
 - no database
+
 
 ## 2. Task description
 
@@ -42,40 +44,56 @@ Form fields are validating accordingly
 A thank you message is displayed to let you know that your request was submitted successfully and that the Company will contact you
 When form failed to submit due to being down or an error we want the user to see a nice message instead of a generic error.
 
+
 ## 3. Installation
 
-### Back-end
+### 3.1. Check environments variables and API end point
 
-1. `bundle install`
-2. `rake db:create db:migrate`
-3. `rails s`
-4. If application is on you will see standard Rails page on `localhost:3000` when API is behind it.
+#### Check [.env.example](https://github.com/szymon33/mic/blob/master/.env.example)
 
-### Front-end
-
-1. `cd frontend`
-2. `npm install`
-3. `gulp start`
-4. Launch server on `localhost:3001`
-
-### Environments variables
-
-Check .env.example
-- MIC_ENV = 'development'
 - LEAD_API_URI = 'http://mic-leads.dev-test.makeiteasy.com/api/v1'
 - LEAD_API_PGUID="CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB"
 - LEAD_API_PACCNAME="MicDevtest"
 - LEAD_API_PPARTNER="MicDevtest"
 - LEAD_API_ACCESS_TOKEN=provide_by_szymon
 
+The following one has to be explicit environment variable for operating system to use in order to distinct `development` and `producion` server.
+
+- MIC_ENV = 'development'
+
+API setup is in [config.json](https://github.com/szymon33/mic/blob/master/frontend/config.json)
+
+### 3.2. Back-end
+
+1. `bundle install`
+2. `rake db:create db:migrate`
+3. `rails s`
+4. If application is on you will see standard Rails page on `localhost:3000` when API is behind it.
+
 Note: database is empty.
 
-## 4. Test
+### 3.3. Front-end
+
+1. `cd frontend`
+2. `npm install`
+3. `gulp start`
+4. Launch server on `localhost:3001` or whichever port gulp tells you to use.
+
+
+## 4. Automatic tests
+
+### Rspec
 ```
     bundle exec rspec
 ```
 
 Note: CodeClimate badge at the top of this file shows nearly 100% of test coverage
+
+### Karma
+
+1. `cd frontend`
+2. `npm test`
+
 
 ## 5. Screenshots
 
