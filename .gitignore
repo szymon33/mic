@@ -16,3 +16,4 @@ public/assets
 **/Thumbs.db
 /frontend/src/js/ngConstants.js
 coverage/
+/frontend/dist
