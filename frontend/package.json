@@ -15,6 +15,7 @@
     "gulp-ng-constant": "^1.2.0"
   },
   "devDependencies": {
+    "angular-mocks": "^1.7.2",
     "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
