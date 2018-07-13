@@ -6,7 +6,12 @@
   },
   "production": {
     "ENV": {
-      "ApiEndpoint": "https://api.production.com/"
+      "ApiEndpoint": "https://api.production.com"
+    }
+  },
+  "test": {
+    "ENV": {
+      "ApiEndpoint": "https://api.test.com"
     }
   }
 }
