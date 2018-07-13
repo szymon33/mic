@@ -12,7 +12,7 @@
           $routeProvider
               .when('/', {
                   templateUrl: 'views/contact-form.html',
-                  controller: 'ContactFromCtrl'
+                  controller: 'ContactFormCtrl'
               });
       }
   ]);

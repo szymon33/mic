@@ -3,11 +3,13 @@
 
   angular
     .module('micApp')
-    .controller('ContactFromCtrl', ContactFromCtrl);
+    .controller('ContactFormCtrl', ContactFormCtrl);
 
-  ContactFromCtrl.$inject = ['$scope', '$http', 'ContactFormsResource'];
+  ContactFormCtrl.$inject = ['$scope', '$http', 'ContactFormsResource'];
 
-  function ContactFromCtrl($scope, $http, ContactFormsResource) {
+  function ContactFormCtrl($scope, $http, ContactFormsResource) {
+    $scope.name = 'ContactFormCtrl';
+
     init($scope);
     $scope.submit = function(isValid) {
       var storedName = $scope.newContact.name;
